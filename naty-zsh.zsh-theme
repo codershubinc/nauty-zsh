@@ -117,12 +117,12 @@ function precmd() {
 get_music_status() {
   if command -v playerctl &> /dev/null; then
     # Quick check first to avoid timeout lag
-    if [[ $(playerctl status 2>/dev/null) == "Playing" ]]; then
+  #  if [[ $(playerctl status 2>/dev/null) == "Playing" ]]; then
       local song_full=$(playerctl metadata title 2>/dev/null | head -n 1)
       local song=$song_full
       [[ ${#song_full} -gt 25 ]] && song="${song_full:0:25}..."
       echo " %F{green}🎵 ${song}%f"
-    fi
+   # fi
   fi
 }
 
@@ -134,4 +134,4 @@ PROMPT='
 %B%F{blue}╰─%F{magenta} ✦ %* ✦%f '
 
 # Right Prompt
-RPROMPT='${RPROMPT_TIME}%b$(get_music_status) %F{242}$(get_random_msg)%f'
+RPROMPT='${RPROMPT_TIME}%b$(get_music_status) %f'
